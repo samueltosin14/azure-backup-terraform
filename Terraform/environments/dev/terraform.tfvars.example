@@ -1,0 +1,3 @@
+subscription_id   = "xxxx"
+location          = "France Central"
+backup_policy_id  = "/subscriptions/xxxx/..."
