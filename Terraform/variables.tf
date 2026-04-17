@@ -27,3 +27,9 @@ variable "tags" {
 variable "backup_policy_id" {
   type = string
 }
+
+
+variable "alert_email_address" {
+  description = "Email address for Azure Monitor alerts"
+  type        = string
+}

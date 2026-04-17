@@ -61,3 +61,20 @@ output "storage_account_diagnostics_name" {
 output "storage_account_diagnostics_id" {
   value = module.storage_account_diagnostics.id
 }
+
+
+output "action_group_name" {
+  value = module.action_group.name
+}
+
+output "action_group_id" {
+  value = module.action_group.id
+}
+
+output "backup_failure_alert_name" {
+  value = module.backup_failure_alert.name
+}
+
+output "backup_failure_alert_id" {
+  value = module.backup_failure_alert.id
+}

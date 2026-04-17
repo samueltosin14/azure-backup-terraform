@@ -83,3 +83,34 @@ module "storage_account_diagnostics" {
   log_categories    = []
   metric_categories = ["AllMetrics"]
 }
+
+
+module "action_group" {
+  source = "./modules/action-group"
+
+  name                = "${local.name_prefix}-ag"
+  resource_group_name = module.resource_group.name
+  short_name          = "bbdevag"
+  email_receiver_name = "primary-email"
+  email_address       = var.alert_email_address
+  tags                = local.common_tags
+}
+
+module "backup_failure_alert" {
+  source = "./modules/log-alert"
+
+  name                       = "${local.name_prefix}-backup-failure-alert"
+  resource_group_name        = module.resource_group.name
+  location                   = var.location
+  log_analytics_workspace_id = module.log_analytics.id
+  action_group_id            = module.action_group.id
+
+  description = "Alert when backup-related failures are detected in Log Analytics"
+
+  query = <<-QUERY
+    AzureDiagnostics
+    | where TimeGenerated >= ago(15m)
+    | where Category has "Backup"
+    | where Level == "Error" or ResultDescription has "fail" or OperationName has "fail"
+  QUERY
+}
