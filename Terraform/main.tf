@@ -46,3 +46,40 @@ module "backup_instance" {
 
   containers_list = ["backup-data"]
 }
+
+module "log_analytics" {
+  source = "./modules/log-analytics"
+
+  name                = "${local.name_prefix}-law"
+  location            = var.location
+  resource_group_name = module.resource_group.name
+  tags                = local.common_tags
+}
+
+module "backup_vault_diagnostics" {
+  source = "./modules/diagnostic-setting"
+
+  name                       = "${local.name_prefix}-bv-diag"
+  target_resource_id         = module.backup_vault.id
+  log_analytics_workspace_id = module.log_analytics.id
+
+  log_categories = [
+    "CoreAzureBackup",
+    "AddonAzureBackupJobs",
+    "AddonAzureBackupPolicy",
+    "AddonAzureBackupProtectedInstance",
+  ]
+
+  metric_categories = ["AllMetrics"]
+}
+
+module "storage_account_diagnostics" {
+  source = "./modules/diagnostic-setting"
+
+  name                       = "${local.name_prefix}-sa-diag"
+  target_resource_id         = module.storage_account.id
+  log_analytics_workspace_id = module.log_analytics.id
+
+  log_categories    = []
+  metric_categories = ["AllMetrics"]
+}

@@ -33,3 +33,31 @@ output "backup_vault_id" {
 output "backup_vault_principal_id" {
   value = module.backup_vault.principal_id
 }
+
+output "log_analytics_name" {
+  value = module.log_analytics.name
+}
+
+output "log_analytics_id" {
+  value = module.log_analytics.id
+}
+
+output "log_analytics_workspace_id" {
+  value = module.log_analytics.workspace_id
+}
+
+output "backup_vault_diagnostics_name" {
+  value = module.backup_vault_diagnostics.name
+}
+
+output "backup_vault_diagnostics_id" {
+  value = module.backup_vault_diagnostics.id
+}
+
+output "storage_account_diagnostics_name" {
+  value = module.storage_account_diagnostics.name
+}
+
+output "storage_account_diagnostics_id" {
+  value = module.storage_account_diagnostics.id
+}
