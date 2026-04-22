@@ -78,3 +78,15 @@ output "backup_failure_alert_name" {
 output "backup_failure_alert_id" {
   value = module.backup_failure_alert.id
 }
+
+output "logic_app_name" {
+  value = module.logic_app.name
+}
+
+output "logic_app_id" {
+  value = module.logic_app.id
+}
+
+output "logic_app_access_endpoint" {
+  value = module.logic_app.access_endpoint
+}

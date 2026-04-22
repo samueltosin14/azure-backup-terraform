@@ -28,3 +28,8 @@ variable "tags" {
   type        = map(string)
   default     = {}
 }
+
+variable "logic_app_callback_url" {
+  description = "Logic App HTTP trigger URL"
+  type        = string
+}

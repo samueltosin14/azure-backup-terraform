@@ -94,6 +94,7 @@ module "action_group" {
   email_receiver_name = "primary-email"
   email_address       = var.alert_email_address
   tags                = local.common_tags
+  logic_app_callback_url = var.logic_app_callback_url
 }
 
 module "backup_failure_alert" {
@@ -113,4 +114,13 @@ module "backup_failure_alert" {
     | where Category has "Backup"
     | where Level == "Error" or ResultDescription has "fail" or OperationName has "fail"
   QUERY
+}
+
+module "logic_app" {
+  source = "./modules/logic-app"
+
+  name                = "${local.name_prefix}-logicapp"
+  location            = var.location
+  resource_group_name = module.resource_group.name
+  tags                = local.common_tags
 }

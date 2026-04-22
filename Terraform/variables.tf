@@ -33,3 +33,8 @@ variable "alert_email_address" {
   description = "Email address for Azure Monitor alerts"
   type        = string
 }
+
+variable "logic_app_callback_url" {
+  description = "Logic App HTTP trigger callback URL"
+  type        = string
+}
