@@ -4,7 +4,7 @@ This project provisions an Azure Blob backup solution using Terraform.
 
 ## Architecture
 ## Architecture
-![Azure Backup Architecture](Images/architecture.png)
+![Azure Backup Architecture](Images/architecture.jpeg)
 - Storage Account + Blob Container
 - Backup Vault
 - Backup Policy (Portal)
